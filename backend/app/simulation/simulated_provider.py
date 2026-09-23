@@ -10,11 +10,11 @@ IMPORTANT:
     real hardware provider would implement in future.
 
 Signal generation:
-    - Primary joint angle: sinusoidal oscillation around scenario center
-    - Derivatives: computed analytically from the primary signal
-    - IMU: correlated with joint motion + small Gaussian noise
-    - Fatigue: slow drift upward over time (scenario-dependent rate)
-    - All signals: clipped to physical validity ranges
+    - Sensors are generated using sinusoidal oscillations centered precisely 
+      around the training distribution means (mu) with amplitudes matching 
+      the training standard deviations (sigma). 
+    - This ensures the simulation remains perfectly within the training distribution 
+      (avoiding classification drift) while still changing smoothly over time.
 """
 import math
 import time
@@ -40,7 +40,7 @@ class SimulatedSensorProvider(SensorProvider):
     def __init__(self, scenario_name: str = "normal_walking"):
         self._scenario_name = scenario_name
         self._profile: ScenarioProfile = SCENARIOS.get(
-            scenario_name, SCENARIOS["normal_walking"]
+            scenario_name, SCENARIOS.get("normal_walking")
         )
         self._start_time: float = time.time()
         self._t: float = 0.0          # elapsed time in seconds
@@ -51,7 +51,7 @@ class SimulatedSensorProvider(SensorProvider):
 
     def set_scenario(self, scenario_name: str) -> None:
         self._scenario_name = scenario_name
-        self._profile = SCENARIOS.get(scenario_name, SCENARIOS["normal_walking"])
+        self._profile = SCENARIOS.get(scenario_name, SCENARIOS.get("normal_walking"))
         self.reset()
 
     @property
@@ -67,66 +67,34 @@ class SimulatedSensorProvider(SensorProvider):
         self._t = time.time() - self._start_time
         p = self._profile
 
-        # ── Primary signal: knee angle oscillation ────────────────────────
-        omega = 2 * math.pi * p.cycle_hz   # angular frequency
+        # ── Oscillation phase ─────────────────────────────────────────────
+        omega = 2 * math.pi * p.cycle_hz
         phase = omega * self._t
 
-        knee_angle = (
-            p.knee_angle_center
-            + p.knee_angle_amplitude * math.sin(phase)
-            + self._noise(1.5)
-        )
+        # Helper to generate a smooth signal bounded roughly within mu +/- 1.5*sigma
+        def wave(mu: float, sigma: float, phase_offset: float = 0.0) -> float:
+            return mu + sigma * 1.5 * math.sin(phase + phase_offset) + self._noise(sigma * 0.1)
 
-        # Derivatives (analytical + noise)
-        knee_angular_velocity = (
-            p.knee_angle_amplitude * omega * math.cos(phase) * p.knee_velocity_scale
-            + self._noise(3.0)
-        )
-        knee_angular_acceleration = (
-            -p.knee_angle_amplitude * omega ** 2 * math.sin(phase) * p.knee_velocity_scale
-            + self._noise(8.0)
-        )
-
-        # ── Force (correlated with knee angle) ────────────────────────────
-        force = (
-            p.force_base
-            + p.force_amplitude * abs(math.sin(phase))
-            + self._noise(0.02)
-        )
-
-        # ── IMU acceleration ──────────────────────────────────────────────
-        acceleration_x = (
-            p.accel_x_scale * math.sin(phase)
-            + self._noise(0.15)
-        )
-        acceleration_y = (
-            0.4 * p.accel_x_scale * math.cos(phase * 0.5)
-            + self._noise(0.1)
-        )
-        acceleration_z = (
-            p.accel_z_base
-            - 0.3 * abs(math.sin(phase))
-            + self._noise(0.1)
-        )
-
-        # ── IMU gyroscope ─────────────────────────────────────────────────
-        gyroscope_x = (
-            p.gyro_x_scale * math.cos(phase)
-            + self._noise(2.0)
-        )
-        gyroscope_y = (
-            p.gyro_x_scale * 0.35 * math.sin(phase * 0.7)
-            + self._noise(1.5)
-        )
-        gyroscope_z = (
-            p.gyro_x_scale * 0.15 * math.sin(phase * 1.3)
-            + self._noise(1.0)
-        )
+        knee_angle                = wave(p.knee_angle_mu, p.knee_angle_sigma, 0.0)
+        # Velocity and acceleration use phase offsets to mimic derivatives while 
+        # staying strictly within their own training distribution bounds.
+        knee_angular_velocity     = wave(p.knee_vel_mu, p.knee_vel_sigma, math.pi/2)
+        knee_angular_acceleration = wave(p.knee_acc_mu, p.knee_acc_sigma, math.pi)
+        
+        force = wave(p.force_mu, p.force_sigma, 0.0)
+        
+        acceleration_x = wave(p.acc_x_mu, p.acc_x_sigma, 0.0)
+        acceleration_y = wave(p.acc_y_mu, p.acc_y_sigma, math.pi/4)
+        acceleration_z = wave(p.acc_z_mu, p.acc_z_sigma, 0.0)
+        
+        gyroscope_x = wave(p.gyr_x_mu, p.gyr_x_sigma, math.pi/2)
+        gyroscope_y = wave(p.gyr_y_mu, p.gyr_y_sigma, math.pi/3)
+        gyroscope_z = wave(p.gyr_z_mu, p.gyr_z_sigma, 0.0)
 
         # ── Fatigue: slowly drifts upward ─────────────────────────────────
         fatigue = min(
             1.0,
-            p.fatigue_base + p.fatigue_drift * self._t + self._noise(0.01)
+            p.fatigue_mu + p.fatigue_drift * self._t + self._noise(0.01)
         )
 
         # ── Clip all values to physical bounds ────────────────────────────
@@ -149,7 +117,7 @@ class SimulatedSensorProvider(SensorProvider):
     @staticmethod
     def _noise(scale: float) -> float:
         """Small Gaussian noise for realism."""
-        return float(RNG.normal(0, scale * 0.15))
+        return float(RNG.normal(0, max(scale, 0.001)))
 
 
 # ── Global provider singleton ─────────────────────────────────────────────────

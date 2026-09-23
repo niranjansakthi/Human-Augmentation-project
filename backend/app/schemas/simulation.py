@@ -4,11 +4,12 @@ from pydantic import BaseModel, Field
 
 
 AVAILABLE_SCENARIOS = [
+    "rest",
     "normal_walking",
-    "high_effort_walking",
     "sit_to_stand",
-    "knee_exercise",
-    "fatigue_scenario",
+    "stand_to_sit",
+    "knee_flexion",
+    "knee_extension",
 ]
 
 

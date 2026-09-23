@@ -1,5 +1,131 @@
 [
   {
+    "session_id": "0da4e857",
+    "scenario": "knee_extension",
+    "started_at": 1790139461.9472258,
+    "ended_at": 1790139474.192609,
+    "sample_count": 29,
+    "avg_assistance": 28.56,
+    "duration_seconds": 12.25
+  },
+  {
+    "session_id": "a7ded363",
+    "scenario": "knee_flexion",
+    "started_at": 1790139446.9985726,
+    "ended_at": 1790139459.442356,
+    "sample_count": 30,
+    "avg_assistance": 32.01,
+    "duration_seconds": 12.44
+  },
+  {
+    "session_id": "af1dfc2d",
+    "scenario": "stand_to_sit",
+    "started_at": 1790139432.3628626,
+    "ended_at": 1790139444.474978,
+    "sample_count": 29,
+    "avg_assistance": 45.97,
+    "duration_seconds": 12.11
+  },
+  {
+    "session_id": "25e7389e",
+    "scenario": "sit_to_stand",
+    "started_at": 1790139417.338541,
+    "ended_at": 1790139429.810201,
+    "sample_count": 30,
+    "avg_assistance": 60.19,
+    "duration_seconds": 12.47
+  },
+  {
+    "session_id": "08f119a4",
+    "scenario": "rest",
+    "started_at": 1790139402.413125,
+    "ended_at": 1790139414.7811642,
+    "sample_count": 30,
+    "avg_assistance": 6.78,
+    "duration_seconds": 12.37
+  },
+  {
+    "session_id": "7a4212ad",
+    "scenario": "normal_walking",
+    "started_at": 1790139382.4962256,
+    "ended_at": 1790139399.8948493,
+    "sample_count": 42,
+    "avg_assistance": 32.58,
+    "duration_seconds": 17.4
+  },
+  {
+    "session_id": "12e15ea2",
+    "scenario": "normal_walking",
+    "started_at": 1790139367.5412247,
+    "ended_at": 1790139379.9222336,
+    "sample_count": 10,
+    "avg_assistance": 32.76,
+    "duration_seconds": 12.38
+  },
+  {
+    "session_id": "4d59e9f3",
+    "scenario": "sit_to_stand",
+    "started_at": 1790139337.8856833,
+    "ended_at": 1790139350.033057,
+    "sample_count": 28,
+    "avg_assistance": 59.79,
+    "duration_seconds": 12.15
+  },
+  {
+    "session_id": "9aafe959",
+    "scenario": "normal_walking",
+    "started_at": 1790139323.0348783,
+    "ended_at": 1790139335.358382,
+    "sample_count": 27,
+    "avg_assistance": 32.48,
+    "duration_seconds": 12.32
+  },
+  {
+    "session_id": "cefc8e59",
+    "scenario": "normal_walking",
+    "started_at": 1790139217.2597823,
+    "ended_at": 1790139219.500266,
+    "sample_count": 7,
+    "avg_assistance": 34.97,
+    "duration_seconds": 2.24
+  },
+  {
+    "session_id": "e877a188",
+    "scenario": "normal_walking",
+    "started_at": 1790139187.8895721,
+    "ended_at": 1790139190.0089269,
+    "sample_count": 5,
+    "avg_assistance": 33.98,
+    "duration_seconds": 2.12
+  },
+  {
+    "session_id": "ac0b6a4a",
+    "scenario": "sit_to_stand",
+    "started_at": 1790139121.3815784,
+    "ended_at": 1790139133.5987005,
+    "sample_count": 29,
+    "avg_assistance": 45.44,
+    "duration_seconds": 12.22
+  },
+  {
+    "session_id": "21fdd95d",
+    "scenario": "normal_walking",
+    "started_at": 1790139106.981399,
+    "ended_at": 1790139119.1093628,
+    "sample_count": 37,
+    "avg_assistance": 35.31,
+    "duration_seconds": 12.13
+  },
+  {
+    "session_id": "5bf7aeb6",
+    "scenario": "normal_walking",
+    "started_at": 1790138041.6820273,
+    "ended_at": 1790138044.951397,
+    "sample_count": 10,
+    "avg_assistance": 34.88,
+    "duration_seconds": 3.27
+  },
+  {
     "session_id": "06b311a3",
     "scenario": "normal_walking",
     "started_at": 1790137590.594759,
