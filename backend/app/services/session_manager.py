@@ -115,6 +115,10 @@ class SessionManager:
         return self._load_index()
 
     def get_session(self, session_id: str) -> Optional[dict]:
+        # If it's the currently active session, return the in-memory data
+        if self._active and self._active.session_id == session_id:
+            return self._active.model_dump()
+            
         path = SESSIONS_DIR / f"{session_id}.json"
         if not path.exists():
             return None
