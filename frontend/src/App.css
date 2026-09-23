@@ -1,0 +1,191 @@
+/* ============================================================
+   App.css
+   Grid and layout for Hero Section
+   ============================================================ */
+
+.app-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* ── HEADER ── */
+.hero-header {
+  margin-bottom: 40px;
+}
+.badge-row {
+  margin-bottom: 12px;
+}
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+.badge--orange {
+  color: var(--orange-dim);
+  background: var(--orange-light);
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--dark);
+  margin-bottom: 8px;
+  line-height: 1;
+}
+.hero-subtitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+.hero-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* ── GRID ── */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+}
+
+.col-left, .col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── PANELS ── */
+.panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+.panel-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* ── CONTROLS ── */
+.control-panel {
+  background: var(--bg-panel);
+}
+.control-panel__header {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.control-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.select-scenario {
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--white);
+  flex: 1;
+  min-width: 180px;
+  outline: none;
+}
+.select-scenario:focus { border-color: var(--orange); }
+
+.btn {
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn--start {
+  background: var(--orange);
+  color: var(--white);
+}
+.btn--start:not(:disabled):hover { background: #ea580c; }
+
+.btn--stop {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-dark);
+}
+.btn--stop:not(:disabled):hover { background: var(--border); }
+
+.error-msg {
+  margin-top: 10px;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ── VISUAL PANEL ── */
+.visual-panel {
+  background: var(--dark-800);
+  border-color: var(--dark-700);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+/* ── SESSION PANEL ── */
+.session-data {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.session-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.session-lbl { color: var(--text-muted); }
+.session-val { color: var(--text-primary); font-weight: 600; }
+
+/* ── FOOTER ── */
+.hero-footer {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.hero-footer p {
+  font-size: 11px;
+  color: var(--text-light);
+  line-height: 1.6;
+}

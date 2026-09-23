@@ -1,0 +1,65 @@
+/* ============================================================
+   ExoSchematic.css — animated SVG technical visualization
+   ============================================================ */
+
+/* Draw-on animation for struts */
+.exo-strut {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: draw-in 0.6s ease forwards;
+}
+.exo-strut--1 { animation-delay: 0.1s; }
+.exo-strut--2 { animation-delay: 0.2s; }
+.exo-strut--3 { animation-delay: 0.3s; }
+.exo-strut--4 { animation-delay: 0.35s; }
+.exo-strut--5 { animation-delay: 0.4s; }
+
+/* Node pop-in */
+.exo-node {
+  transform-origin: center;
+  opacity: 0;
+  animation: node-pop 0.4s ease forwards;
+}
+.exo-node--1 { animation-delay: 0.45s; }
+.exo-node--2 { animation-delay: 0.55s; }
+.exo-node--3 { animation-delay: 0.6s; }
+
+/* Labels fade in */
+.exo-label {
+  opacity: 0;
+  animation: fade-in 0.4s ease forwards;
+}
+.exo-label--1 { animation-delay: 0.6s; }
+.exo-label--2 { animation-delay: 0.7s; }
+.exo-label--3 { animation-delay: 0.75s; }
+.exo-label--4 { animation-delay: 0.8s; }
+
+/* Signal rays */
+.exo-ray {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: draw-in 0.5s ease forwards;
+}
+.exo-ray--1 { animation-delay: 0.85s; }
+.exo-ray--2 { animation-delay: 0.9s; }
+
+/* Knee pulse when active */
+.exo-knee-pulse {
+  transform-origin: center;
+}
+.exo-knee-pulse--anim {
+  animation: knee-pulse 2s ease-in-out infinite;
+}
+@keyframes knee-pulse {
+  0%,100% { opacity: 0.8; r: 10; }
+  50%      { opacity: 0.35; r: 14; }
+}
+
+/* Scanning line animation */
+.exo-scanline {
+  opacity: 0;
+  animation: fade-in 0.3s ease 1.1s forwards;
+}
+.exo-scanline rect {
+  animation: scan-line 3s linear 1.2s infinite;
+}

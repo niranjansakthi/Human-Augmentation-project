@@ -1,0 +1,63 @@
+/* ============================================================
+   Global Design Tokens — H-AUGMENT Engineering Prototype
+   Font: IBM Plex Sans (headings) + JetBrains Mono (data/labels)
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Palette */
+  --bg:           #F7F4EE;
+  --bg-panel:     #F0EDE7;
+  --bg-dark:      #181818;
+  --bg-dark-2:    #1f1f1f;
+  --bg-dark-3:    #252525;
+  --white:        #FFFFFF;
+  --dark:         #171717;
+  --dark-2:       #262626;
+  --orange:       #FF6A00;
+  --orange-2:     #FF8A24;
+  --orange-dim:   rgba(255,106,0,0.12);
+  --orange-border:rgba(255,106,0,0.35);
+  --green:        #16A34A;
+  --green-dim:    rgba(22,163,74,0.12);
+  --border:       #E2DDD6;
+  --border-dark:  #2D2D2D;
+  --text-primary: #171717;
+  --text-muted:   #6B6258;
+  --text-light:   #9E9890;
+  --text-dark-muted: #888880;
+
+  /* Fonts */
+  --font-heading: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Radii */
+  --r: 3px;
+  --r-md: 5px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-mono);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ── Keyframes ── */
+@keyframes pulse-dot { 0%,100%{opacity:1}50%{opacity:0.3} }
+@keyframes fade-up   { from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none} }
+@keyframes fade-in   { from{opacity:0}to{opacity:1} }
+@keyframes draw-in   { from{stroke-dashoffset:400}to{stroke-dashoffset:0} }
+@keyframes scan-line { from{transform:translateY(0)}to{transform:translateY(100%)} }
+@keyframes node-pop  { 0%{r:0;opacity:0}60%{r:6;opacity:1}100%{r:4;opacity:1} }
+
+.anim-fade-up { animation: fade-up 0.5s ease both; }
