@@ -1,0 +1,311 @@
+{
+  "manual_samples": [
+    {
+      "id": 1,
+      "description": "Typical rest/idle state \u2014 user sitting still",
+      "predicted_movement": "REST",
+      "expected_movement": "REST",
+      "confidence": 1.0,
+      "assistance_pct": 5.75,
+      "assistance_category": "Minimal",
+      "expected_range": [
+        0,
+        20
+      ],
+      "movement_pass": true,
+      "assistance_pass": true,
+      "overall_pass": true
+    },
+    {
+      "id": 2,
+      "description": "Standard walking gait \u2014 moderate pace, healthy user",
+      "predicted_movement": "WALKING",
+      "expected_movement": "WALKING",
+      "confidence": 0.9786,
+      "assistance_pct": 28.82,
+      "assistance_category": "Low",
+      "expected_range": [
+        10,
+        45
+      ],
+      "movement_pass": true,
+      "assistance_pass": true,
+      "overall_pass": true
+    },
+    {
+      "id": 3,
+      "description": "Sit-to-Stand \u2014 strong knee extension force required",
+      "predicted_movement": "SIT_TO_STAND",
+      "expected_movement": "SIT_TO_STAND",
+      "confidence": 0.9502,
+      "assistance_pct": 68.41,
+      "assistance_category": "High",
+      "expected_range": [
+        45,
+        90
+      ],
+      "movement_pass": true,
+      "assistance_pass": true,
+      "overall_pass": true
+    },
+    {
+      "id": 4,
+      "description": "Stand-to-Sit \u2014 controlled descent, normal effort",
+      "predicted_movement": "STAND_TO_SIT",
+      "expected_movement": "STAND_TO_SIT",
+      "confidence": 0.8778,
+      "assistance_pct": 44.24,
+      "assistance_category": "Moderate",
+      "expected_range": [
+        20,
+        55
+      ],
+      "movement_pass": true,
+      "assistance_pass": true,
+      "overall_pass": true
+    },
+    {
+      "id": 5,
+      "description": "Knee flexion exercise \u2014 rehabilitation, normal effort",
+      "predicted_movement": "KNEE_FLEXION",
+      "expected_movement": "KNEE_FLEXION",
+      "confidence": 0.9969,
+      "assistance_pct": 29.49,
+      "assistance_category": "Low",
+      "expected_range": [
+        10,
+        40
+      ],
+      "movement_pass": true,
+      "assistance_pass": true,
+      "overall_pass": true
+    },
+    {
+      "id": 6,
+      "description": "Knee extension exercise \u2014 rehabilitation, normal effort",
+      "predicted_movement": "KNEE_EXTENSION",
+      "expected_movement": "KNEE_EXTENSION",
+      "confidence": 0.9654,
+      "assistance_pct": 27.89,
+      "assistance_category": "Low",
+      "expected_range": [
+        10,
+        40
+      ],
+      "movement_pass": true,
+      "assistance_pass": true,
+      "overall_pass": true
+    },
+    {
+      "id": 7,
+      "description": "EDGE CASE: Walking under extreme fatigue \u2014 assistance should escalate",
+      "predicted_movement": "WALKING",
+      "expected_movement": "WALKING",
+      "confidence": 0.9634,
+      "assistance_pct": 40.76,
+      "assistance_category": "Very High",
+      "expected_range": [
+        35,
+        80
+      ],
+      "movement_pass": true,
+      "assistance_pass": true,
+      "overall_pass": true
+    },
+    {
+      "id": 8,
+      "description": "EDGE CASE: Sit-to-Stand with high force AND high fatigue",
+      "predicted_movement": "SIT_TO_STAND",
+      "expected_movement": "SIT_TO_STAND",
+      "confidence": 0.9551,
+      "assistance_pct": 76.35,
+      "assistance_category": "High",
+      "expected_range": [
+        60,
+        100
+      ],
+      "movement_pass": true,
+      "assistance_pass": true,
+      "overall_pass": true
+    },
+    {
+      "id": 9,
+      "description": "AMBIGUOUS: Overlapping signals \u2014 KNEE_FLEXION vs STAND_TO_SIT boundary",
+      "predicted_movement": "KNEE_FLEXION",
+      "expected_movement": null,
+      "confidence": 0.9756,
+      "assistance_pct": 31.68,
+      "assistance_category": "Low",
+      "expected_range": [
+        15,
+        55
+      ],
+      "movement_pass": true,
+      "assistance_pass": true,
+      "overall_pass": true
+    },
+    {
+      "id": 10,
+      "description": "BOUNDARY: Micro-movement \u2014 just above noise floor, near REST",
+      "predicted_movement": "REST",
+      "expected_movement": "REST",
+      "confidence": 1.0,
+      "assistance_pct": 6.55,
+      "assistance_category": "Minimal",
+      "expected_range": [
+        0,
+        20
+      ],
+      "movement_pass": true,
+      "assistance_pass": true,
+      "overall_pass": true
+    }
+  ],
+  "overfit_analysis": {
+    "classifier": {
+      "train_accuracy": 0.9858,
+      "test_accuracy": 0.9433,
+      "gap": 0.0425,
+      "cv_mean": 0.939,
+      "cv_std": 0.0118,
+      "verdict": "GOOD_FIT"
+    },
+    "regressor": {
+      "train_mae": 4.9947,
+      "test_mae": 7.4051,
+      "train_r2": 0.901,
+      "test_r2": 0.7768,
+      "gap_r2": 0.1242,
+      "cv_r2_mean": 0.7945,
+      "cv_r2_std": 0.0161,
+      "verdict": "OVERFITTING"
+    }
+  },
+  "learning_curve": {
+    "train_sizes": [
+      240,
+      548,
+      857,
+      1165,
+      1474,
+      1782,
+      2091,
+      2400
+    ],
+    "train_accuracy_mean": [
+      0.9775,
+      0.9839,
+      0.9858,
+      0.9827,
+      0.983,
+      0.9851,
+      0.9839,
+      0.9837
+    ],
+    "val_accuracy_mean": [
+      0.9057,
+      0.9257,
+      0.9303,
+      0.936,
+      0.9377,
+      0.9397,
+      0.9413,
+      0.9437
+    ],
+    "train_accuracy_std": [
+      0.005,
+      0.0007,
+      0.0005,
+      0.0017,
+      0.0011,
+      0.0014,
+      0.0014,
+      0.0007
+    ],
+    "val_accuracy_std": [
+      0.0077,
+      0.0053,
+      0.0111,
+      0.009,
+      0.0023,
+      0.0076,
+      0.0034,
+      0.0055
+    ],
+    "final_train_acc": 0.9837,
+    "final_val_acc": 0.9437,
+    "final_gap": 0.04,
+    "trend_improving": true
+  },
+  "per_class": {
+    "KNEE_EXTENSION": {
+      "precision": 0.8888888888888888,
+      "recall": 0.88,
+      "f1-score": 0.8844221105527639,
+      "support": 100.0
+    },
+    "KNEE_FLEXION": {
+      "precision": 0.9494949494949495,
+      "recall": 0.94,
+      "f1-score": 0.9447236180904522,
+      "support": 100.0
+    },
+    "REST": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 100.0
+    },
+    "SIT_TO_STAND": {
+      "precision": 0.9405940594059405,
+      "recall": 0.95,
+      "f1-score": 0.945273631840796,
+      "support": 100.0
+    },
+    "STAND_TO_SIT": {
+      "precision": 0.8921568627450981,
+      "recall": 0.91,
+      "f1-score": 0.900990099009901,
+      "support": 100.0
+    },
+    "WALKING": {
+      "precision": 0.98989898989899,
+      "recall": 0.98,
+      "f1-score": 0.9849246231155779,
+      "support": 100.0
+    },
+    "accuracy": 0.9433333333333334,
+    "macro avg": {
+      "precision": 0.9435056250723112,
+      "recall": 0.9433333333333334,
+      "f1-score": 0.9433890137682486,
+      "support": 600.0
+    },
+    "weighted avg": {
+      "precision": 0.9435056250723112,
+      "recall": 0.9433333333333334,
+      "f1-score": 0.9433890137682485,
+      "support": 600.0
+    }
+  },
+  "ood_stress": [
+    {
+      "name": "Zero sensors (all zeros)",
+      "movement": "REST",
+      "confidence": 0.9856,
+      "assistance": 7.1
+    },
+    {
+      "name": "Maximum-range values",
+      "movement": "STAND_TO_SIT",
+      "confidence": 0.5024,
+      "assistance": 59.81
+    },
+    {
+      "name": "Negative knee angle (hyperextension)",
+      "movement": "REST",
+      "confidence": 0.9239,
+      "assistance": 7.2
+    }
+  ]
+}

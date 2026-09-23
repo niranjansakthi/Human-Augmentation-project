@@ -1,0 +1,125 @@
+{
+  "total_samples": 3000,
+  "class_distribution": {
+    "STAND_TO_SIT": 500,
+    "SIT_TO_STAND": 500,
+    "REST": 500,
+    "KNEE_EXTENSION": 500,
+    "KNEE_FLEXION": 500,
+    "WALKING": 500
+  },
+  "variation_distribution": {
+    "low_stability": 600,
+    "slow": 600,
+    "high_force": 600,
+    "normal": 600,
+    "high_fatigue": 600
+  },
+  "feature_stats": {
+    "timestamp": {
+      "mean": 4.9501,
+      "std": 2.8871,
+      "min": -0.0031,
+      "max": 9.9061,
+      "25%": 2.4732,
+      "75%": 7.4259
+    },
+    "knee_angle": {
+      "mean": 44.1927,
+      "std": 28.0325,
+      "min": -10.0,
+      "max": 135.0,
+      "25%": 22.9133,
+      "75%": 65.5979
+    },
+    "knee_angular_velocity": {
+      "mean": 6.2808,
+      "std": 63.7049,
+      "min": -162.1693,
+      "max": 145.4998,
+      "25%": -51.2145,
+      "75%": 58.3406
+    },
+    "knee_angular_acceleration": {
+      "mean": 7.7894,
+      "std": 95.9154,
+      "min": -292.6899,
+      "max": 242.0356,
+      "25%": -68.5916,
+      "75%": 82.9981
+    },
+    "force": {
+      "mean": 0.409,
+      "std": 0.2461,
+      "min": 0.0,
+      "max": 1.0,
+      "25%": 0.225,
+      "75%": 0.5833
+    },
+    "acceleration_x": {
+      "mean": 0.527,
+      "std": 0.6112,
+      "min": -0.408,
+      "max": 3.8677,
+      "25%": 0.139,
+      "75%": 0.6453
+    },
+    "acceleration_y": {
+      "mean": 0.8201,
+      "std": 0.6227,
+      "min": -0.413,
+      "max": 3.2686,
+      "25%": 0.3541,
+      "75%": 1.185
+    },
+    "acceleration_z": {
+      "mean": 9.1294,
+      "std": 0.8802,
+      "min": 4.6389,
+      "max": 11.7528,
+      "25%": 8.6139,
+      "75%": 9.7309
+    },
+    "gyroscope_x": {
+      "mean": 15.0469,
+      "std": 12.4532,
+      "min": -9.1197,
+      "max": 72.293,
+      "25%": 5.0766,
+      "75%": 22.2877
+    },
+    "gyroscope_y": {
+      "mean": 17.2406,
+      "std": 13.2001,
+      "min": -3.8586,
+      "max": 71.1933,
+      "25%": 7.1048,
+      "75%": 25.26
+    },
+    "gyroscope_z": {
+      "mean": 3.7511,
+      "std": 3.3475,
+      "min": -3.2367,
+      "max": 21.6253,
+      "25%": 1.4285,
+      "75%": 5.291
+    },
+    "fatigue_indicator": {
+      "mean": 0.2841,
+      "std": 0.2163,
+      "min": 0.0,
+      "max": 0.9562,
+      "25%": 0.1443,
+      "75%": 0.3141
+    },
+    "assistance_level": {
+      "mean": 36.4538,
+      "std": 21.0444,
+      "min": 0.0,
+      "max": 100.0,
+      "25%": 19.446,
+      "75%": 50.7241
+    }
+  },
+  "disclaimer": "SYNTHETIC DATA ONLY. Generated programmatically with fixed seed=42. Not collected from real human subjects. Not clinically validated. For engineering prototype use only."
+}

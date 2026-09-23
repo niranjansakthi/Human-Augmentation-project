@@ -1,0 +1,140 @@
+{
+  "movement_classifier": {
+    "disclaimer": "Trained on SYNTHETIC data. High accuracy reflects dataset simplicity, not real-world performance. Not clinically validated.",
+    "model_type": "RandomForestClassifier",
+    "n_estimators": 150,
+    "test_accuracy": 0.9433,
+    "cv_accuracy_mean": 0.939,
+    "cv_accuracy_std": 0.0118,
+    "per_class_metrics": {
+      "KNEE_EXTENSION": {
+        "precision": 0.8889,
+        "recall": 0.88,
+        "f1_score": 0.8844,
+        "support": 100
+      },
+      "KNEE_FLEXION": {
+        "precision": 0.9495,
+        "recall": 0.94,
+        "f1_score": 0.9447,
+        "support": 100
+      },
+      "REST": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 100
+      },
+      "SIT_TO_STAND": {
+        "precision": 0.9406,
+        "recall": 0.95,
+        "f1_score": 0.9453,
+        "support": 100
+      },
+      "STAND_TO_SIT": {
+        "precision": 0.8922,
+        "recall": 0.91,
+        "f1_score": 0.901,
+        "support": 100
+      },
+      "WALKING": {
+        "precision": 0.9899,
+        "recall": 0.98,
+        "f1_score": 0.9849,
+        "support": 100
+      }
+    },
+    "confusion_matrix": [
+      [
+        88,
+        0,
+        0,
+        0,
+        11,
+        1
+      ],
+      [
+        0,
+        94,
+        0,
+        6,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        100,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        0,
+        95,
+        0,
+        0
+      ],
+      [
+        9,
+        0,
+        0,
+        0,
+        91,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0,
+        98
+      ]
+    ],
+    "class_names": [
+      "KNEE_EXTENSION",
+      "KNEE_FLEXION",
+      "REST",
+      "SIT_TO_STAND",
+      "STAND_TO_SIT",
+      "WALKING"
+    ],
+    "n_features": 26
+  },
+  "assistance_regressor": {
+    "disclaimer": "Trained on SYNTHETIC data. Recommendations are prototype engineering outputs. Not a medical device. Not clinically validated.",
+    "model_type": "RandomForestRegressor",
+    "n_estimators": 150,
+    "test_mae": 7.4051,
+    "test_rmse": 9.7134,
+    "test_r2": 0.7768,
+    "category_accuracy": 0.585,
+    "cv_r2_mean": 0.7945,
+    "cv_r2_std": 0.0161,
+    "assistance_categories": [
+      {
+        "name": "Minimal",
+        "range": "0\u201320%"
+      },
+      {
+        "name": "Low",
+        "range": "21\u201340%"
+      },
+      {
+        "name": "Moderate",
+        "range": "41\u201360%"
+      },
+      {
+        "name": "High",
+        "range": "61\u201380%"
+      },
+      {
+        "name": "Very High",
+        "range": "81\u2013100%"
+      }
+    ]
+  }
+}

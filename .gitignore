@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Project-specific
+backend/sessions/*.json
+!backend/sessions/index.json
+backend/api_test_results.json
+
+# Ignore datasets if they are too large (but we want the synthetic one)
+# backend/data/*.csv  # We will NOT ignore this since it's just 800KB and useful for reproducing
+# backend/models/*.joblib # Models are ~20MB total, which is fine for GitHub
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
